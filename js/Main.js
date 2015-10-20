@@ -10,13 +10,14 @@ $(document).ready(function() {
     
     // Create the phaser context.
     // --------------------------
-    game = new Phaser.Game(GLOBAL_GAME_WIDTH, GLOBAL_GAME_HEIGHT, Phaser.AUTO, "game-container");
+    game = new Phaser.Game(GLOBAL_GAME_WIDTH, GLOBAL_GAME_HEIGHT, Phaser.WEBGL, "game-container");
 
     // Add all states.
     // ---------------
     game.state.add("BootState", chongdashu.BootState);
     game.state.add("PreloadState", chongdashu.PreloadState);
     game.state.add("GameState", chongdashu.GameState);
+    game.state.add("MenuState", chongdashu.MenuState);
 
     // Start with boot sequence.
     // -------------------------

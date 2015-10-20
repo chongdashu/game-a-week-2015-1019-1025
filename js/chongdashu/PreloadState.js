@@ -52,7 +52,7 @@ var p = PreloadState.prototype;
     p.create = function() {
         console.log("[PreloadState], create()");
         this.loadingBar.cropEnabled = false;
-        this.state.start("GameState");
+        this.state.start("MenuState");
         
     };
 
