@@ -27,11 +27,15 @@ var p = GameState.prototype;
 
     // @phaser
     p.create = function() {
+
+        var logo = game.add.sprite(0, 0, 'phaser-logo');
+        logo.anchor.setTo(0.5, 0.5);
+
+        var gray = game.add.filter('Gray');
     };
 
     // @phaser
     p.update = function() {
-       
     };
 
     

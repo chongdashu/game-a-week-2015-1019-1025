@@ -45,6 +45,10 @@ var p = PreloadState.prototype;
 
         // Loading begins here.
         // --------------------
+        this.load.image("phaser-logo", "res/phaser-logo-small.png");
+        this.load.script('gray', 'res/filters/Gray.js');
+        this.load.script('sample', 'res/filters/SampleFilter.js');
+
        
     };
 
