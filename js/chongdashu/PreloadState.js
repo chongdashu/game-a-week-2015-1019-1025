@@ -28,10 +28,6 @@ var p = PreloadState.prototype;
 
         // Preloader specific stuff.
         // -------------------------
-        this.game.world.setBounds(
-            -GLOBAL_GAME_WIDTH/2,
-            -GLOBAL_GAME_HEIGHT/2,
-            GLOBAL_GAME_WIDTH, GLOBAL_GAME_HEIGHT);
 
         this.loadingFrame = this.game.add.sprite(0,0, "preloader-frame");
         this.loadingBar = this.game.add.sprite(0,0, "preloader-bar");

@@ -27,6 +27,14 @@ var p = BootState.prototype;
         {
             //  If you have any desktop specific settings, they can go in here
             // this.scale.pageAlignHorizontally = true;
+
+            // Center the game world by shifting the bounds
+            // left and upwards.
+            // Makes (0,0) be the center of the screen.
+            this.game.world.setBounds(
+                -this.game.world.width/2,
+                -this.game.world.height/2,
+                this.game.world.width, this.game.world.height);
         }
         else
         {
