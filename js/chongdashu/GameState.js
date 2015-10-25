@@ -39,7 +39,7 @@ var p = GameState.prototype;
         mask.beginFill(0xFFFFFF);
         mask.drawCircle(0, 0, 250);
         
-        ball.mask = mask;
+        // ball.mask = mask;
 
         this.rotation =  Phaser.Math.degToRad(-15);
 
@@ -80,9 +80,18 @@ var p = GameState.prototype;
 
         if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
             this.rotation = Phaser.Math.degToRad(Phaser.Math.radToDeg(this.rotation) +1);
+            this.texture1.x = this.texture1.width/2 * Math.cos(this.rotation);
+            this.texture2.x = -this.texture1.width/2 * Math.cos(this.rotation);
+            this.texture1.y = this.texture1.width/2 * Math.sin(this.rotation);
+            this.texture2.y = -this.texture1.width/2 * Math.sin(this.rotation);
+
         }
         if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
             this.rotation = Phaser.Math.degToRad(Phaser.Math.radToDeg(this.rotation) -1);
+            this.texture1.x = this.texture1.width/2 * Math.cos(this.rotation);
+            this.texture2.x = -this.texture1.width/2 * Math.cos(this.rotation);
+            this.texture1.y = this.texture1.width/2 * Math.sin(this.rotation);
+            this.texture2.y = -this.texture1.width/2 * Math.sin(this.rotation);
         }
 
         this.texture1.rotation = this.rotation;
