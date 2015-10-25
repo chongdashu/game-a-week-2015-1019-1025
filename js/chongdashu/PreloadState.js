@@ -51,6 +51,9 @@ var p = PreloadState.prototype;
         this.load.image("wall-horizontal", "res/wall-horizontal.png");
         this.load.image("wall-vertical", "res/wall-vertical.png");
         this.load.image("floor", "res/floor.png");
+        this.load.image("ball", "res/ball.png");
+        this.load.image("player", "res/player.png");
+        this.load.image("net", "res/net.png");
 
        
     };
