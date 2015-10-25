@@ -13,9 +13,9 @@ this.chongdashu = this.chongdashu||{};
  * @class AudioComponent
  * @constructor
  **/
-var AudioComponent = function(entity) {
+var AudioComponent = function(state) {
     // @param {Phaser.Keyboard} entity
-    this.init(entity);
+    this.init(state);
 };
 var p = createjs.extend(AudioComponent, chongdashu.Component);
     
@@ -23,17 +23,17 @@ var p = createjs.extend(AudioComponent, chongdashu.Component);
 
     p.audioCache = {};
 
-    p.init = function(entity)
+    p.init = function(state)
     {
         console.log("[AudioComponent], init()");
-        this.Component_init(entity, AudioComponent.TYPE);
+        this.Component_init(AudioComponent.TYPE);
 
         this.audioCache = {};
     };
 
     p.play = function(audioName) {
         if (!(audioName in this.audioCache)) {
-            this.audioCache[audioName] = this.entity.add.audio(audioName);
+            this.audioCache[audioName] = this.state.add.audio(audioName);
         }
         this.audioCache[audioName].play();
     };

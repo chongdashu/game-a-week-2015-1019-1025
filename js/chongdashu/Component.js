@@ -26,9 +26,7 @@ Component.prototype.constructor = Component;
         return entity.komponents && compoentType in entity.komponents;
     };
 
-    p.init = function(entity, componentType)
-    {
-        this.entity = entity;
+    p.init = function(componentType) {
         this.componentType = componentType;
     };
 

@@ -13,9 +13,9 @@ this.chongdashu = this.chongdashu||{};
  * @class KeyboardComponent
  * @constructor
  **/
-var KeyboardComponent = function(entity) {
+var KeyboardComponent = function(keyboard) {
     // @param {Phaser.Keyboard} entity
-    this.init(entity);
+    this.init(keyboard);
 };
 var p = createjs.extend(KeyboardComponent, chongdashu.Component);
     
@@ -29,12 +29,12 @@ var p = createjs.extend(KeyboardComponent, chongdashu.Component);
     p.keyStates = null;
     p.keyboard = null;
 
-    p.init = function(entity)
+    p.init = function(keyboard)
     {
         console.log("[KeyboardComponent], init()");
-        this.Component_init(entity, KeyboardComponent.TYPE);
+        this.Component_init(KeyboardComponent.TYPE);
         this.keyStates = {};
-        this.keyboard = entity;
+        this.keyboard = keyboard;
 
         // this.initKey(Phaser.Keyboard.W);
         // this.initKey(Phaser.Keyboard.A);

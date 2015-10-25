@@ -48,6 +48,10 @@ var p = PreloadState.prototype;
         this.load.script('gray', 'res/filters/Gray.js');
         this.load.script('sample', 'res/filters/SampleFilter.js');
 
+        this.load.image("wall-horizontal", "res/wall-horizontal.png");
+        this.load.image("wall-vertical", "res/wall-vertical.png");
+        this.load.image("floor", "res/floor.png");
+
        
     };
 
