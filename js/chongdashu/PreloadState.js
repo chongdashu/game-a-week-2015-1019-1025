@@ -46,6 +46,9 @@ var p = PreloadState.prototype;
         // Loading begins here.
         // --------------------
         this.load.image("phaser-logo", "res/phaser-logo-small.png");
+        this.load.image("texture", "res/texture.png");
+        this.load.image("texture2", "res/texture2.jpg");
+        this.load.image("sphere", "res/sphere.png");
         this.load.script('gray', 'res/filters/Gray.js');
         this.load.script('sample', 'res/filters/SampleFilter.js');
 
