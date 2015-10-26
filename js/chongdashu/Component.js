@@ -31,7 +31,6 @@ Component.prototype.constructor = Component;
     };
 
     p.addTo = function(entity) {
-        console.log(entity.komponents);
         if (!entity.komponents) {
             entity.komponents = {};
         }

@@ -56,8 +56,7 @@ System.prototype.constructor = System;
         var containsKeys = true;
 
         $.each(components, function(key, value) {
-
-            if (!(key  in entity.komponents)) {
+            if (!(key in entity.komponents)) {
                 containsKeys = false;
                 return false;
             }

@@ -9,25 +9,25 @@ this.chongdashu = this.chongdashu||{};
     "use strict";
 
 /**
- * PlayerSystem
- * @class PlayerSystem
+ * EnemySystem
+ * @class EnemySystem
  * @constructor
  **/
-var PlayerSystem = function(state) {
+var EnemySystem = function(state) {
     this.init(state);
 };
-var p = createjs.extend(PlayerSystem, chongdashu.System);
+var p = createjs.extend(EnemySystem, chongdashu.System);
 
-    PlayerSystem.SPEED_X = 200;
+    EnemySystem.SPEED_X = 200;
 
     p.init = function(state)
     {
-        console.log("[PlayerSystem], init()");
+        console.log("[EnemySystem], init()");
         this.System_init(state);
 
         // Add components here
         // e.g., 
-        this.addComponent(chongdashu.PlayerComponent.TYPE);
+        this.addComponent(chongdashu.EnemyComponent.TYPE);
         this.addComponent(chongdashu.KeyboardComponent.TYPE);
     };
 
@@ -38,21 +38,21 @@ var p = createjs.extend(PlayerSystem, chongdashu.System);
             var sprite = entity;
             var kc = sprite.komponents[chongdashu.KeyboardComponent.TYPE];
 
-            if (kc.isDown(Phaser.Keyboard.LEFT)) {
-                sprite.body.velocity.x = -PlayerSystem.SPEED_X;
+            if (kc.isDown(Phaser.Keyboard.A)) {
+                sprite.body.velocity.x = -EnemySystem.SPEED_X;
                 sprite.body.facingX = Phaser.LEFT;
                 
             }
-            if (kc.isDown(Phaser.Keyboard.RIGHT)) {
-                sprite.body.velocity.x = +PlayerSystem.SPEED_X;
+            if (kc.isDown(Phaser.Keyboard.D)) {
+                sprite.body.velocity.x = +EnemySystem.SPEED_X;
                 sprite.body.facingX = Phaser.RIGHT;
             }
 
-            if (kc.isUp(Phaser.Keyboard.RIGHT) && kc.isUp(Phaser.Keyboard.LEFT)) {
+            if (kc.isUp(Phaser.Keyboard.D) && kc.isUp(Phaser.Keyboard.A)) {
                 sprite.body.velocity.x = 0;
             }
 
-            if (kc.isJustDown(Phaser.Keyboard.UP)) {
+            if (kc.isJustDown(Phaser.Keyboard.W)) {
                 sprite.body.velocity.y = -300;
             }
         }
@@ -60,7 +60,7 @@ var p = createjs.extend(PlayerSystem, chongdashu.System);
 
 // Link
 // ----
-chongdashu.PlayerSystem = createjs.promote(PlayerSystem, "System");
+chongdashu.EnemySystem = createjs.promote(EnemySystem, "System");
 
 }());
 

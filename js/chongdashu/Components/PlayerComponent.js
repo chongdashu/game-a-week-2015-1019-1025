@@ -15,7 +15,7 @@ this.chongdashu = this.chongdashu||{};
  **/
 var PlayerComponent = function() {
     // @param {Phaser.Keyboard} entity
-    this.init(entity);
+    this.init();
 };
 var p = createjs.extend(PlayerComponent, chongdashu.Component);
     
