@@ -28,13 +28,9 @@ var p = GameState.prototype;
     // @phaser
     p.create = function() {
 
-        var logo = game.add.sprite(0, 0, 'phaser-logo');
-        logo.anchor.setTo(0.5, 0.5);
-
         this.createWorld();
         this.createSystems();
         this.createDebug();
-
     };
 
     p.createDebug = function() {
@@ -59,6 +55,8 @@ var p = GameState.prototype;
         this.createWalls();
         this.createBalls();
         this.createPlayers();
+        this.createCountdownText();
+        this.createScoreText();
         this.createEntities();
     };
 
@@ -80,6 +78,23 @@ var p = GameState.prototype;
         this.groups.push(this.wallGroup = this.game.add.group());
         this.groups.push(this.ballGroup = this.game.add.group());
         this.groups.push(this.playerGroup = this.game.add.group());
+        this.groups.push(this.textGroup = this.game.add.group());
+    };
+
+    p.createCountdownText = function() {
+        this.countdownText = this.game.add.text(0, -this.game.height/4, "3", { font: "bold 24px Helvetica", fill: "#eaeaea"}) ;
+        this.textGroup.add(this.countdownText);
+        this.countdownText.anchor.set(0.5);
+    };
+
+    p.createScoreText = function() {
+        this.scoreTextLeft = this.game.add.text(-this.game.width/3, -this.game.height/3, "P1 Score:", { font: "bold 24px Helvetica", fill: "#eaeaea"}) ;
+        this.scoreTextRight = this.game.add.text(this.game.width/4, -this.game.height/3, "P2 Score:", { font: "bold 24px Helvetica", fill: "#eaeaea"}) ;
+        this.textGroup.add(this.scoreTextLeft);
+        this.textGroup.add(this.scoreTextRight);
+        this.textGroup.forEach(function(text) {
+            text.anchor.set(0.5, 0.5);
+        }, this);
     };
 
     p.createBalls = function() {
@@ -134,7 +149,11 @@ var p = GameState.prototype;
         this.wallTop = this.wallGroup.create(0, -this.game.world.height/2 + wallHorizontalImage.height/2, "wall-horizontal");
         this.wallBottom = this.wallGroup.create(0, +this.game.world.height/2 -wallHorizontalImage.height/2, "wall-horizontal");
 
-        this.floor = this.wallGroup.create(this.wallBottom.x, this.wallBottom.y - this.wallBottom.height/2 - floorImage.height/2, "floor");
+        this.floor = this.game.add.sprite(this.wallBottom.x, this.wallBottom.y - this.wallBottom.height/2 - floorImage.height/2, "floor");
+        this.floor.anchor.set(0.5);
+        this.game.physics.enable(this.floor);
+        this.floor.body.immovable = true;
+        this.floor.body.allowGravity = false;
         new chongdashu.FloorComponent().addTo(this.floor);
         
         this.net = this.wallGroup.create(this.floor.x, this.floor.y - this.floor.height/2 - netImage.height/2,  "net");
@@ -154,7 +173,6 @@ var p = GameState.prototype;
     };
 
     p.createSystems = function() {
-        
         this.systems = this.systems || [];
 
         this.systems.push(this.playerSystem = new chongdashu.PlayerSystem(this));
@@ -164,7 +182,6 @@ var p = GameState.prototype;
         this.systems.push(this.aiSystem = new chongdashu.AISystem(this));
         this.systems.push(this.ballSystem = new chongdashu.BallSystem(this));
         this.systems.push(this.scoreSystem = new chongdashu.ScoreSystem(this));
-
     };
 
 
@@ -193,14 +210,13 @@ var p = GameState.prototype;
                 system.update(entity);
             });
         });
-        
-    
     };
 
     p.updatePhysics = function() {
         this.game.physics.arcade.collide(this.ballGroup, this.wallGroup);
         this.game.physics.arcade.collide(this.ballGroup, this.floor, this.onBallFloorCollide, null, this);
         this.game.physics.arcade.collide(this.playerGroup, this.wallGroup);
+        this.game.physics.arcade.collide(this.playerGroup, this.floor);
         this.game.physics.arcade.collide(this.playerGroup, this.ballGroup, this.onPlayerBallCollide, null, this);
     };
 
