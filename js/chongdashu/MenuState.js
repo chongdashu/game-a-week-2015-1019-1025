@@ -72,7 +72,7 @@ var p = MenuState.prototype;
             strokeThickness: 1
         };
 
-        this.titleText = this.game.add.text(0, -64, "<Untitled>", titleStyle);
+        this.titleText = this.game.add.text(0, -64, "Dodgey Volleyball", titleStyle);
         this.titleText.anchor.setTo(0.5, 0.5);
         this.subtitleText = this.game.add.text(0, -64+32, "#OGAW-2", subtitleStyle);
         this.subtitleText.anchor.setTo(0.5, 0.5);
