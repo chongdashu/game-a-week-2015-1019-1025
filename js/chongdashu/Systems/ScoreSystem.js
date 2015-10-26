@@ -25,7 +25,7 @@ var p = createjs.extend(ScoreSystem, chongdashu.System);
 
         // Add components here
         // e.g., 
-        // this.addComponent(chongdashu.KeyboardComponent.TYPE);
+        this.addComponent(chongdashu.ScoreComponent.TYPE);
     };
 
 
@@ -33,6 +33,10 @@ var p = createjs.extend(ScoreSystem, chongdashu.System);
         if (this.System_update(entity)) {
             
         }
+    };
+
+    p.onBallFloorCollide = function(ball, floor) {
+        
     };
 
 // Link

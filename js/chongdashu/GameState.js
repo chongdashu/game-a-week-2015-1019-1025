@@ -17,9 +17,7 @@ var GameState = function(game) {
 };
 var p = GameState.prototype;
 
-    p.prototypes = null;
-    p.dataIndex = 0;
-
+    p.entities = null;
     p.groups = null;
     p.systems = null;
     
@@ -61,6 +59,14 @@ var p = GameState.prototype;
         this.createWalls();
         this.createBalls();
         this.createPlayers();
+        this.createEntities();
+    };
+
+    p.createEntities = function() {
+        this.entities = [];
+
+        this.entities.push(this.manager = new chongdashu.Entity(this));
+        new chongdashu.ScoreComponent().addTo(this.manager);
     };
 
     p.createPhysics = function() {
@@ -179,6 +185,13 @@ var p = GameState.prototype;
                     system.update(entity);
                 });
             });
+
+            $.each(self.entities, function(entity_index, entity) {
+                $.each(entity.komponents, function(component_index, component) {
+                        component.update();
+                    });
+                system.update(entity);
+            });
         });
         
     
@@ -186,9 +199,24 @@ var p = GameState.prototype;
 
     p.updatePhysics = function() {
         this.game.physics.arcade.collide(this.ballGroup, this.wallGroup);
+        this.game.physics.arcade.collide(this.ballGroup, this.floor, this.onBallFloorCollide, null, this);
         this.game.physics.arcade.collide(this.playerGroup, this.wallGroup);
-        this.game.physics.arcade.collide(this.playerGroup, this.ballGroup);
+        this.game.physics.arcade.collide(this.playerGroup, this.ballGroup, this.onPlayerBallCollide, null, this);
     };
+
+    p.onPlayerBallCollide = function(player, ball) {
+        this.ballSystem.onPlayerBallCollide(player, ball);
+        this.playerSystem.onPlayerBallCollide(player, ball);
+        this.enemySystem.onPlayerBallCollide(player, ball);
+    };
+
+    p.onBallFloorCollide = function(ball, floor) {
+        this.ballSystem.onBallFloorCollide(ball, floor);
+        this.playerSystem.onBallFloorCollide(ball, floor);
+        this.enemySystem.onBallFloorCollide(ball, floor);
+        this.scoreSystem.onBallFloorCollide(ball, floor);
+    };
+
 
     
 

@@ -58,6 +58,13 @@ var p = createjs.extend(PlayerSystem, chongdashu.System);
         }
     };
 
+    p.onBallFloorCollide = function(ball, floor) {
+        
+    };
+
+    p.onPlayerBallCollide = function(player, ball) {
+    };
+
 // Link
 // ----
 chongdashu.PlayerSystem = createjs.promote(PlayerSystem, "System");
