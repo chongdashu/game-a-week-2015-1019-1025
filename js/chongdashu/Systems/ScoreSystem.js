@@ -21,11 +21,13 @@ var p = createjs.extend(ScoreSystem, chongdashu.System);
     ScoreSystem.ROUNDSTATE_STARTING = "starting";
     ScoreSystem.ROUNDSTATE_RUNNING = "running";
     ScoreSystem.ROUNDSTATE_END = "end";
+    ScoreSystem.ROUNDSTATE_QUIT = "quit";
 
     p.playerServe = null;
     p.roundStartCooldown = null;
     p.roundState = null;
     p.scores = {};
+    p.scoresToWin = 1;
 
     p.init = function(state)
     {
@@ -70,7 +72,21 @@ var p = createjs.extend(ScoreSystem, chongdashu.System);
                 if (this.roundStartCooldown <= 0) {
                     this.roundState = ScoreSystem.ROUNDSTATE_STARTING;
                     this.roundStartCooldown = 3000;
-                    this.onInit();
+                    if (this.scores[Phaser.RIGHT] >= this.scoresToWin || this.scores[Phaser.LEFT] >= this.scoresToWin) {
+                        this.roundState = ScoreSystem.ROUNDSTATE_QUIT;
+                        this.state.countdownText.setText( (this.scores[Phaser.RIGHT] >= this.scoresToWin ? "P1" : "P2") + " Wins!");
+                    } else {
+                        this.onInit();
+                    }
+                    
+                }
+                else {
+                    this.roundStartCooldown -= this.game.time.elapsed;
+                }
+            }
+            else if (this.roundState == ScoreSystem.ROUNDSTATE_QUIT) {
+                if (this.roundStartCooldown <= 0) {
+                    this.game.state.start("MenuState");
                 }
                 else {
                     this.roundStartCooldown -= this.game.time.elapsed;
@@ -78,8 +94,8 @@ var p = createjs.extend(ScoreSystem, chongdashu.System);
             }
         }
 
-        this.state.scoreTextLeft.setText("P1 Score: " + this.scores[Phaser.LEFT]);
-        this.state.scoreTextRight.setText("P2 Score: " + this.scores[Phaser.RIGHT]);
+        this.state.scoreTextLeft.setText("P1 : " + this.scores[Phaser.LEFT] + "/" + this.scoresToWin);
+        this.state.scoreTextRight.setText("P2 : " + this.scores[Phaser.RIGHT] + "/" + this.scoresToWin);
 
     };
 
@@ -144,7 +160,7 @@ var p = createjs.extend(ScoreSystem, chongdashu.System);
         this.state.playerSystem.enabled = false;
         this.state.enemySystem.enabled = false;
 
-        this.playerServe = this.playerServer == Phaser.RIGHT ? Phaser.LEFT : Phaser.RIGHT;
+        this.playerServe = this.playerServe == Phaser.RIGHT ? Phaser.LEFT : Phaser.RIGHT;
 
         
     };

@@ -106,6 +106,8 @@ var p = GameState.prototype;
             this.game.physics.enable(ball);
             ball.body.bounce.set(0.5,1);
             ball.body.collideWorldBounds = true;
+            ball.body.drag.set(0.5, 0.5);
+            ball.body.mass = 0.1;
 
             new chongdashu.BallComponent().addTo(ball);
 
@@ -217,7 +219,7 @@ var p = GameState.prototype;
         this.game.physics.arcade.collide(this.ballGroup, this.floor, this.onFloorBallCollide, null, this);
         this.game.physics.arcade.collide(this.playerGroup, this.wallGroup);
         this.game.physics.arcade.collide(this.playerGroup, this.floor);
-        this.game.physics.arcade.collide(this.playerGroup, this.ballGroup, this.onPlayerBallCollide, null, this);
+        this.game.physics.arcade.overlap(this.playerGroup, this.ballGroup, this.onPlayerBallCollide, null , this);
     };
 
     p.onPlayerBallCollide = function(player, ball) {

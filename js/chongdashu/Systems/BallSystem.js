@@ -43,8 +43,8 @@ var p = createjs.extend(BallSystem, chongdashu.System);
 
         var d = ball.x - player.x;
 
-        ball.body.velocity.x = 50* d * Math.cos(45);
-        ball.body.velocity.y = 50* d * Math.sin(45);
+        ball.body.velocity.x = 10 * d * Math.cos(45);
+        ball.body.velocity.y = -Math.abs(10 * d * Math.sin(45));
     };
 
 // Link

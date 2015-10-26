@@ -52,9 +52,9 @@ var p = createjs.extend(PlayerSystem, chongdashu.System);
                 sprite.body.velocity.x = 0;
             }
 
-            if (kc.isJustDown(Phaser.Keyboard.UP)) {
-                sprite.body.velocity.y = -300;
-            }
+            // if (kc.isJustDown(Phaser.Keyboard.UP)) {
+            //     sprite.body.velocity.y = -300;
+            // }
         }
     };
 
