@@ -27,7 +27,7 @@ var p = createjs.extend(ScoreSystem, chongdashu.System);
     p.roundStartCooldown = null;
     p.roundState = null;
     p.scores = {};
-    p.scoresToWin = 1;
+    p.scoresToWin = 5;
 
     p.init = function(state)
     {

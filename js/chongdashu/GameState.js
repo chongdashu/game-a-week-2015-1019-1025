@@ -30,7 +30,7 @@ var p = GameState.prototype;
 
         this.createWorld();
         this.createSystems();
-        this.createDebug();
+        // this.createDebug();
     };
 
     p.createDebug = function() {
