@@ -21,10 +21,13 @@ var p = createjs.extend(PlayerComponent, chongdashu.Component);
     
     PlayerComponent.TYPE = "component:PlayerComponent";
 
+    p.side = Phaser.RIGHT;
+
     p.init = function()
     {
         console.log("[PlayerComponent], init()");
         this.Component_init(PlayerComponent.TYPE);
+        this.side = Phaser.RIGHT;
     };
 
     p.update = function() {

@@ -78,8 +78,6 @@ var p = createjs.extend(ScoreSystem, chongdashu.System);
             }
         }
 
-
-
         this.state.scoreTextLeft.setText("P1 Score: " + this.scores[Phaser.LEFT]);
         this.state.scoreTextRight.setText("P2 Score: " + this.scores[Phaser.RIGHT]);
 
@@ -92,9 +90,11 @@ var p = createjs.extend(ScoreSystem, chongdashu.System);
             ball.body.allowGravity = false;
             if (this.playerServe == Phaser.RIGHT) {
                 ball.position.x = this.game.world.width/4;
+                ball.position.y = 0;
             }
             else if (this.playerServe == Phaser.LEFT) {
                 ball.position.x = -this.game.world.width/4;
+                ball.position.y = 0;
             }
         }, this);
 
@@ -109,6 +109,8 @@ var p = createjs.extend(ScoreSystem, chongdashu.System);
     };
 
     p.onRun = function() {
+        this.state.playerSystem.enabled = true;
+        this.state.enemySystem.enabled = true;
         this.state.countdownText.visible = false;
         this.state.ballGroup.forEach(function(ball) {
             ball.body.allowGravity = true;
@@ -131,6 +133,20 @@ var p = createjs.extend(ScoreSystem, chongdashu.System);
             this.scores[Phaser.RIGHT]++;
             this.state.countdownText.setText("P2 home runned P1!");
         }
+
+        ball.body.velocity.x = 0;
+        ball.body.velocity.y = 0;
+
+        this.state.ballGroup.forEach(function(ball) {
+            ball.body.allowGravity = false;
+        }, this);
+
+        this.state.playerSystem.enabled = false;
+        this.state.enemySystem.enabled = false;
+
+        this.playerServe = this.playerServer == Phaser.RIGHT ? Phaser.LEFT : Phaser.RIGHT;
+
+        
     };
 
 // Link

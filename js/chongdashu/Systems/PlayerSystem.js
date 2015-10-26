@@ -63,6 +63,7 @@ var p = createjs.extend(PlayerSystem, chongdashu.System);
     };
 
     p.onPlayerBallCollide = function(player, ball) {
+
     };
 
 // Link

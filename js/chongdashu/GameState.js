@@ -214,7 +214,7 @@ var p = GameState.prototype;
 
     p.updatePhysics = function() {
         this.game.physics.arcade.collide(this.ballGroup, this.wallGroup);
-        this.game.physics.arcade.collide(this.ballGroup, this.floor, this.onBallFloorCollide, null, this);
+        this.game.physics.arcade.collide(this.ballGroup, this.floor, this.onFloorBallCollide, null, this);
         this.game.physics.arcade.collide(this.playerGroup, this.wallGroup);
         this.game.physics.arcade.collide(this.playerGroup, this.floor);
         this.game.physics.arcade.collide(this.playerGroup, this.ballGroup, this.onPlayerBallCollide, null, this);
@@ -226,7 +226,7 @@ var p = GameState.prototype;
         this.enemySystem.onPlayerBallCollide(player, ball);
     };
 
-    p.onBallFloorCollide = function(ball, floor) {
+    p.onFloorBallCollide = function(floor, ball) {
         this.ballSystem.onBallFloorCollide(ball, floor);
         this.playerSystem.onBallFloorCollide(ball, floor);
         this.enemySystem.onBallFloorCollide(ball, floor);

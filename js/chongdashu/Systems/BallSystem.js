@@ -40,6 +40,11 @@ var p = createjs.extend(BallSystem, chongdashu.System);
     };
 
     p.onPlayerBallCollide = function(player, ball) {
+
+        var d = ball.x - player.x;
+
+        ball.body.velocity.x = 50* d * Math.cos(45);
+        ball.body.velocity.y = 50* d * Math.sin(45);
     };
 
 // Link

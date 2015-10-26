@@ -21,10 +21,13 @@ var p = createjs.extend(EnemyComponent, chongdashu.Component);
     
     EnemyComponent.TYPE = "component:EnemyComponent";
 
+    p.side = null;
+
     p.init = function()
     {
         console.log("[EnemyComponent], init()");
         this.Component_init(EnemyComponent.TYPE);
+        p.side = Phaser.LEFT;
     };
 
     p.update = function() {
