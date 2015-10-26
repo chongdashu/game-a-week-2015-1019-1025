@@ -72,7 +72,7 @@ var p = MenuState.prototype;
             strokeThickness: 1
         };
 
-        this.titleText = this.game.add.text(0, -64, "Dodgey Volleyball", titleStyle);
+        this.titleText = this.game.add.text(0, -64, "Dodgey-Ball", titleStyle);
         this.titleText.anchor.setTo(0.5, 0.5);
         this.subtitleText = this.game.add.text(0, -64+32, "#OGAW-2", subtitleStyle);
         this.subtitleText.anchor.setTo(0.5, 0.5);
@@ -82,7 +82,7 @@ var p = MenuState.prototype;
         this.startText = this.game.add.text(0, +96, "Click Anywhere To Begin", instructionStyle);
         this.startText.anchor.setTo(0.5, 0.5);
         
-        this.instructionsText = this.game.add.text(0, +64, "", startStyle);
+        this.instructionsText = this.game.add.text(0, +64, "P1 Left: A ,  P1 Right : D | P2 Left: <-  , P2 Right: ->", startStyle);
         this.instructionsText.anchor.setTo(0.5, 0.5);
 
         this.game.input.keyboard.onDownCallback = function(e) {
